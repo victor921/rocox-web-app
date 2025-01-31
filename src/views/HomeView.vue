@@ -1,203 +1,179 @@
 <template>
   <div class="home-container">
     <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1 class="hero-title">Welcome to <span class="brand-name">RocoX</span></h1>
-        <p class="hero-subtitle">
-          Simplifying your business with <strong>Software</strong> and <strong>Automation</strong>.
-        </p>
-        <router-link to="/services" class="cta-button">Explore Our Services</router-link>
+    <div class="hero">
+      <img class="logo" src="@/assets/ROCO-7.png" alt="Company Logo" />
+      <h1>Welcome to <span class="highlight">RocoX</span></h1>
+      <p class="subtitle">Innovating with <strong>Automation</strong> & <strong>Custom Software</strong> to enhance your business efficiency.</p>
+
+      <div class="cta-buttons">
+        <router-link to="/products" class="btn primary">Our Products</router-link>
+        <router-link to="/contact" class="btn secondary">Get in Touch</router-link>
       </div>
-    </section>
+    </div>
 
     <!-- About Section -->
-    <section class="about">
-      <div class="container">
-        <h2>About Us</h2>
-        <p>
-          At <span class="brand-name">RocoX</span>, we craft software and automation solutions that streamline operations and drive efficiency, empowering businesses to reach their goals.
-        </p>
-      </div>
-    </section>
+    <div class="about-section">
+      <h2>About Rocox</h2>
+      <p>We specialize in cutting-edge **automation** and **custom software development** to streamline your business operations.</p>
+      <p>Our solutions range from **data automation**, **business intelligence**, **workflow automation**, and **custom AI integrations** to help businesses scale efficiently.</p>
+    </div>
 
-    <!-- Services Section -->
-    <section class="services">
-      <div class="container">
-        <h2>Our Expertise</h2>
-        <div class="service-cards">
-          <div class="service-card">
-            <h3>Custom Software</h3>
-            <p>We design bespoke software tailored to your unique requirements.</p>
-          </div>
-          <div class="service-card">
-            <h3>Automation Solutions</h3>
-            <p>Streamline processes and save time with intelligent automation.</p>
-          </div>
-          <div class="service-card">
-            <h3>Data Insights</h3>
-            <p>Make informed decisions with actionable data analytics.</p>
-          </div>
-        </div>
+    <!-- Key Features -->
+    <div class="features">
+      <div class="feature-card">
+        <h3>Process Automation</h3>
+        <p>We automate your manual workflows to save time and resources.</p>
       </div>
-    </section>
+      <div class="feature-card">
+        <h3>Custom Software</h3>
+        <p>Tailor-made software solutions to fit your business needs.</p>
+      </div>
+      <div class="feature-card">
+        <h3>AI-Powered Insights</h3>
+        <p>Integrate **AI-driven** analytics to make informed business decisions.</p>
+      </div>
+    </div>
 
-    <!-- Contact Section -->
-    <section class="contact">
-      <div class="container">
-        <h2>Get in Touch</h2>
-        <p>
-          Ready to transform your business? Contact us today for a consultation.
-        </p>
-        <router-link to="/contact" class="cta-button">Contact Us</router-link>
-      </div>
-    </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: "HomeView",
 };
 </script>
 
 <style scoped>
-/* General Styles */
+/* General Layout */
 .home-container {
-  font-family: "Arial", sans-serif;
+  text-align: center;
+  padding: 50px 20px;
   color: #333;
-  background-color: #f9f9f9;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
 }
 
 /* Hero Section */
 .hero {
-  text-align: center;
-  padding: 4rem 1.5rem;
-  background-color: #fff;
+  background: linear-gradient(135deg, #003366, #005bb5);
+  padding: 100px 20px;
+  border-radius: 12px;
+  color: white;
+  position: relative;
 }
 
-.hero-title {
-  font-size: 2.5rem;
+.logo {
+  width: 140px; /* Bigger logo */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
   font-weight: bold;
-  color: #000;
 }
 
-.brand-name {
-  color: #555;
+.highlight {
+  color: #ffcc00;
 }
 
-.hero-subtitle {
+.subtitle {
   font-size: 1.2rem;
-  color: #777;
-  margin: 1rem 0;
+  margin-top: 15px;
+  opacity: 0.9;
 }
 
-.cta-button {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
-  background-color: #333;
-  color: #fff;
+/* CTA Buttons */
+.cta-buttons {
+  margin-top: 25px;
+}
+
+.btn {
   text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  padding: 14px 26px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 10px;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-.cta-button:hover {
-  background-color: #555;
+.primary {
+  background: #ffcc00;
+  color: #003366;
+}
+
+.primary:hover {
+  background: #ffb300;
+}
+
+.secondary {
+  background: white;
+  color: #005bb5;
+  border: 2px solid #005bb5;
+}
+
+.secondary:hover {
+  background: #005bb5;
+  color: white;
 }
 
 /* About Section */
-.about {
-  padding: 3rem 1.5rem;
-  background-color: #f9f9f9;
-  text-align: center;
+.about-section {
+  margin-top: 60px;
+  padding: 40px 20px;
+  background: #f9f9f9;
+  border-radius: 12px;
 }
 
-.about h2 {
+.about-section h2 {
+  color: #003366;
   font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #000;
 }
 
-.about p {
+.about-section p {
   font-size: 1.1rem;
   color: #555;
+  margin: 10px 0;
 }
 
-/* Services Section */
-.services {
-  padding: 3rem 1.5rem;
-  background-color: #fff;
-  text-align: center;
-}
-
-.services h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #000;
-}
-
-.service-cards {
+/* Features Section */
+.features {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 20px;
+  margin-top: 40px;
   flex-wrap: wrap;
 }
 
-.service-card {
-  background-color: #f9f9f9;
-  padding: 1.5rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+.feature-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
   width: 300px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s ease;
 }
 
-.service-card:hover {
-  transform: translateY(-5px);
-  border-color: #333;
+.feature-card h3 {
+  margin-bottom: 10px;
+  color: #005bb5;
 }
 
-.service-card h3 {
-  font-size: 1.4rem;
-  color: #000;
-  margin-bottom: 1rem;
-}
-
-.service-card p {
-  color: #555;
+.feature-card p {
   font-size: 1rem;
+  opacity: 0.8;
 }
 
-/* Contact Section */
-.contact {
-  padding: 3rem 1.5rem;
-  background-color: #f9f9f9;
-  text-align: center;
+.feature-card:hover {
+  transform: translateY(-5px);
 }
 
-.contact h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #000;
-}
-
-.contact p {
-  font-size: 1.1rem;
-  color: #555;
-  margin-bottom: 1.5rem;
-}
-
-.contact .cta-button {
-  background-color: #000;
-}
-
-.contact .cta-button:hover {
-  background-color: #555;
+/* Footer */
+footer {
+  margin-top: 50px;
+  font-size: 0.9rem;
+  color: #666;
 }
 </style>

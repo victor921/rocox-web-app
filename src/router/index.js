@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import ContactUs from '../views/ContactUs.vue';
 import Product from '../views/Product.vue';
 
+
 const routes = [
   { path: '/', name: 'home', component: HomeView },
   { path: '/contact', name: 'contact', component: ContactUs },

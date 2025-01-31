@@ -2,12 +2,11 @@
   <div class="app-container">
     <!-- Header with Navigation -->
     <header class="header">
-      <nav class="navbar">
+      <div class="navbar">
         <router-link to="/" class="nav-link">Home</router-link>
-        <router-link to="/services" class="nav-link">Services</router-link>
         <router-link to="/products" class="nav-link">Products</router-link>
         <router-link to="/contact" class="nav-link">Contact Us</router-link>
-      </nav>
+      </div>
     </header>
 
     <!-- Main Content -->
@@ -31,19 +30,28 @@ export default {
 <style scoped>
 /* General Layout */
 .app-container {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #333;
-  background-color: #f9f9f9;
+  background-color: #f4f7fc;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Header - Modern Transparent Nav */
 .header {
-  background-color: #000;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.9); /* Transparent White */
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   padding: 1rem 2rem;
+  z-index: 1000;
 }
 
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: center;
@@ -51,27 +59,31 @@ export default {
 }
 
 .nav-link {
-  color: #fff;
+  color: #333;
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.2rem;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #ffd700;
+  color: #0056b3;
+  text-decoration: underline;
 }
 
+/* Main Content */
 .main-content {
   flex: 1;
-  padding: 2rem;
+  padding: 6rem 2rem 2rem; /* Adjusted padding to prevent overlap with fixed navbar */
 }
 
+/* Footer - Light & Elegant */
 .footer {
   text-align: center;
   padding: 1rem 2rem;
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #555;
   font-size: 0.9rem;
+  border-top: 1px solid #eaeaea;
 }
 </style>
