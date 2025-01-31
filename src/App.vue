@@ -3,7 +3,7 @@
     <!-- Header with Navigation -->
     <header class="header">
       <div class="navbar">
-        <router-link to="/" class="nav-link">ome</router-link>
+        <router-link to="/" class="nav-link">Home</router-link>
         <router-link to="/products" class="nav-link">Products</router-link>
         <router-link to="/contact" class="nav-link">Contact Us</router-link>
       </div>
