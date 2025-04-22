@@ -28,10 +28,13 @@ jobs:
       - name: Build Vue App
         run: npm run build
 
-      # Deploy to Firebase
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v13.4.0
         with:
+          # explicitly point to your Firebase project
+          project_id: ${{ secrets.FIREBASE_PROJECT_ID }}
+          # if you defined "target":"my-app" under hosting in firebase.json, specify it:
+          # args: deploy --only hosting:my-app
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
