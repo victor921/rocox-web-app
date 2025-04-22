@@ -1,143 +1,131 @@
 <template>
-  <div class="contact-us-container">
-    <div class="contact-card">
-      <h1>Contact Us</h1>
-      <p>We’d love to hear from you! Fill out the form below, and we’ll get back to you as soon as possible.</p>
+  <div class="contact-us-container bg-white min-h-screen flex items-center justify-center">
+    <div class="contact-card bg-gray-50 p-8 sm:p-10 rounded-lg border border-gray-200 max-w-md w-full mx-4 animate-fade-in">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center">Contact RocoX</h1>
+      <p class="text-base sm:text-lg text-gray-600 mt-4 text-center">
+        Let’s discuss how our <strong>automation</strong> and <strong>AI</strong> solutions can help you.
+      </p>
       
-      <form @submit.prevent="submitForm">
+      <form @submit.prevent="submitForm" class="mt-6 space-y-4">
         <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" v-model="form.name" placeholder="Enter your name" required />
+          <label for="name" class="block text-sm font-semibold text-gray-700">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            v-model="form.name"
+            placeholder="Enter your name"
+            required
+            class="w-full mt-1 px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+          />
         </div>
         
         <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" v-model="form.email" placeholder="Enter your email" required />
+          <label for="email" class="block text-sm font-semibold text-gray-700">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            v-model="form.email"
+            placeholder="Enter your email"
+            required
+            class="w-full mt-1 px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+          />
         </div>
         
         <div class="form-group">
-          <label for="message">Your Message</label>
-          <textarea id="message" v-model="form.message" placeholder="Type your message here..." rows="5" required></textarea>
+          <label for="phone" class="block text-sm font-semibold text-gray-700">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            v-model="form.phone"
+            placeholder="Enter your phone number"
+            class="w-full mt-1 px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+          />
         </div>
         
-        <button type="submit" class="btn-submit">Send Message</button>
+        <div class="form-group">
+          <label for="company" class="block text-sm font-semibold text-gray-700">Company Name</label>
+          <input
+            type="text"
+            id="company"
+            v-model="form.company"
+            placeholder="Enter your company name"
+            class="w-full mt-1 px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="message" class="block text-sm font-semibold text-gray-700">Your Message</label>
+          <textarea
+            id="message"
+            v-model="form.message"
+            placeholder="Tell us about your needs..."
+            rows="4"
+            required
+            class="w-full mt-1 px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
+          ></textarea>
+        </div>
+        
+        <button
+          type="submit"
+          :disabled="isSubmitting"
+          class="w-full bg-gray-600 text-white px-6 py-3 rounded-md font-semibold hover:scale-105 transition-transform duration-300 disabled:opacity-50"
+        >
+          {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+        </button>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
       form: {
         name: '',
         email: '',
+        phone: '',
+        company: '',
         message: '',
       },
+      isSubmitting: false,
     };
   },
   methods: {
-    submitForm() {
-      console.log("Form submitted:", this.form);
-      alert("Thank you for reaching out! We will get back to you shortly.");
-      this.form.name = '';
-      this.form.email = '';
-      this.form.message = '';
+    async submitForm() {
+      this.isSubmitting = true;
+      try {
+        const response = await axios.post('/api/contact', this.form);
+        console.log('Form submission response:', response.data);
+        alert('Thank you for your message! We’ll get back to you soon.');
+        this.form = { name: '', email: '', phone: '', company: '', message: '' };
+      } catch (error) {
+        console.error('Form submission error:', error);
+        alert('An error occurred. Please try again later.');
+      } finally {
+        this.isSubmitting = false;
+      }
     },
   },
 };
 </script>
 
 <style scoped>
-/* Background & Centering */
-.contact-us-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(to right, #007bff, #0056b3);
-  padding: 2rem;
-}
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap';
+@import 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
 
-/* Contact Card */
-.contact-card {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 10px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-h1 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-p {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 1.5rem;
-}
-
-/* Form Styling */
-.form-group {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-bottom: 1rem;
-}
-
-label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-input, textarea {
-  padding: 0.9rem;
-  font-size: 1rem;
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-input:focus, textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
-}
-
-/* Submit Button */
-.btn-submit {
-  padding: 0.9rem 1.5rem;
-  font-size: 1rem;
-  color: white;
-  background: linear-gradient(to right, #007bff, #0056b3);
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease-in-out, transform 0.2s;
-}
-
-.btn-submit:hover {
-  background: linear-gradient(to right, #0056b3, #003d82);
-  transform: scale(1.05);
-}
-
-/* Fade-in Animation */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in { animation: fadeIn 0.8s ease-out; }
+
+.contact-us-container { font-family: 'Inter', sans-serif; }
+
+@media (max-width: 640px) {
+  .contact-card { padding: 1.5rem; }
 }
 </style>
