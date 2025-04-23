@@ -1,23 +1,5 @@
 <template>
   <div class="home-container bg-white min-h-screen">
-    <!-- Mobile Menu Toggle -->
-    <div class="md:hidden fixed top-4 left-4 z-50">
-      <button @click="menuOpen = !menuOpen" class="text-gray-700 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path v-if="!menuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div v-if="menuOpen" class="md:hidden fixed inset-0 bg-gray-800 bg-opacity-75 z-40">
-      <div class="bg-white w-64 h-full p-4">
-        <router-link to="/products" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Products</router-link>
-        <router-link to="/contact" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Contact</router-link>
-      </div>
-    </div>
-
     <!-- Hero Section -->
     <div class="hero relative bg-gray-50 py-16 px-4 sm:px-6 md:px-12 lg:py-20 overflow-hidden">
       <div class="absolute inset-0 opacity-5">
@@ -117,7 +99,6 @@ export default {
   name: "HomeView",
   data() {
     return {
-      menuOpen: false,
       chartsFailed: false,
     };
   },
