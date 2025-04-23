@@ -9,7 +9,7 @@ const app = express();
 app.use(cors({ origin: true }));
 app.use(express.json());
 
-// Nodemailer configuration with Gmail SMTfP
+// Nodemailer configuration with Gmail SMTP
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: parseInt(process.env.SMTP_PORT || '587', 10),
