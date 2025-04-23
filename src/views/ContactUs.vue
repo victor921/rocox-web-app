@@ -64,10 +64,30 @@
             class="w-full mt-1 px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:border-gray-600 focus:ring focus:ring-gray-200 focus:ring-opacity-50"
           ></textarea>
         </div>
+
+        <div class="form-group flex items-start">
+          <input
+            type="checkbox"
+            id="consent"
+            v-model="form.consent"
+            required
+            class="mt-1 h-4 w-4 text-gray-600 focus:ring-gray-500 border-gray-300 rounded"
+          />
+          <label for="consent" class="ml-2 text-sm text-gray-700">
+            I consent to having this website store my submitted information for the purpose of responding to my inquiry.
+            <span class="relative group text-gray-600 underline hover:text-gray-800 cursor-pointer">
+              Privacy Policy
+              <div class="absolute left-0 bottom-full mb-2 w-64 p-3 text-xs text-gray-800 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-20">
+                <strong>RocoX Inc. Privacy Policy</strong><br>
+                We collect your name, email, phone, company, and message solely to respond to your inquiry. Your information is stored securely and will not be shared with third parties. You may request deletion at any time. By submitting this form, you consent to this use of your data.
+              </div>
+            </span>.
+          </label>
+        </div>
         
         <button
           type="submit"
-          :disabled="isSubmitting"
+          :disabled="isSubmitting || !form.consent"
           class="w-full bg-gray-600 text-white px-6 py-3 rounded-md font-semibold hover:scale-105 transition-transform duration-300 disabled:opacity-50"
         >
           {{ isSubmitting ? 'Sending...' : 'Send Message' }}
@@ -89,6 +109,7 @@ export default {
         phone: '',
         company: '',
         message: '',
+        consent: false,
       },
       isSubmitting: false,
     };
@@ -100,7 +121,7 @@ export default {
         const response = await axios.post('/api/contact', this.form);
         console.log('Form submission response:', response.data);
         alert('Thank you for your message! We’ll get back to you soon.');
-        this.form = { name: '', email: '', phone: '', company: '', message: '' };
+        this.form = { name: '', email: '', phone: '', company: '', message: '', consent: false };
       } catch (error) {
         console.error('Form submission error:', error);
         alert('An error occurred. Please try again later.');
