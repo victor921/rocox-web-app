@@ -9,16 +9,21 @@ const app = express();
 app.use(cors({ origin: true }));
 app.use(express.json());
 
+// Nodemailer configuration with Gmail SMTP
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: parseInt(process.env.SMTP_PORT || '587', 10),
+  secure: process.env.SMTP_SECURE === 'true',
   auth: {
-    user: functions.config().email.user,
-    pass: functions.config().email.pass,
+    user: process.env.SMTP_USER || '',
+    pass: process.env.SMTP_PASS || '',
   },
 });
 
-const twilioClient = new twilio(functions.config().twilio.sid, functions.config().twilio.token);
+// Twilio configuration
+const twilioClient = new twilio(process.env.TWILIO_SID || '', process.env.TWILIO_TOKEN || '');
 
+// Contact form endpoint
 app.post('/api/contact', async (req, res) => {
   const { name, email, phone, company, message } = req.body;
 
@@ -28,8 +33,8 @@ app.post('/api/contact', async (req, res) => {
     }
 
     await transporter.sendMail({
-      from: `"RocoX Contact" <${functions.config().email.user}>`,
-      to: functions.config().email.user,
+      from: `"RocoX Contact" <${process.env.SMTP_FROM_EMAIL || ''}>`,
+      to: process.env.SMTP_TO_EMAIL || '',
       subject: `New Contact Form Submission from ${name}`,
       text: `
         Name: ${name}
@@ -43,8 +48,8 @@ app.post('/api/contact', async (req, res) => {
     if (phone) {
       await twilioClient.messages.create({
         body: `New contact from ${name}: ${message.substring(0, 100)}...`,
-        from: functions.config().twilio.from,
-        to: functions.config().twilio.to,
+        from: process.env.TWILIO_FROM || '',
+        to: process.env.TWILIO_TO || '',
       });
     }
 

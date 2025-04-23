@@ -10,49 +10,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the repo
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # 2. Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
+          cache: npm
 
-      # 3. Install dependencies
       - name: Install Dependencies
         run: npm ci
 
-      # 4. Install Firebase CLI globally
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      # 5. Verify Firebase CLI
       - name: Check Firebase CLI Version
         run: firebase --version
 
-      # 6. Debug Environment
       - name: Debug Environment
         run: |
           echo "Project ID: ${{ secrets.FIREBASE_PROJECT_ID }}"
           echo "Token set: ${{ secrets.FIREBASE_DEPLOY_TOKEN != '' }}"
           ls -la
-          if [ -f "firebase.json" ]; then echo "firebase.json exists"; else echo "firebase.json missing"; exit 1; fi
-          if [ -d "./functions" ]; then echo "Functions folder found"; else echo "Functions folder not found"; exit 1; fi
+          [ -f "firebase.json" ] && echo "firebase.json exists" || { echo "firebase.json missing"; exit 1; }
+          [ -d "./functions" ] && echo "Functions folder found" || { echo "Functions folder not found"; exit 1; }
+          [ -f "./functions/index.js" ] && echo "functions/index.js exists" || { echo "functions/index.js missing"; exit 1; }
           cat firebase.json
+          cat functions/package.json
 
-      # 7. Build the Vue app
       - name: Build Vue App
         run: npm run build
 
-      # 8. Install Functions dependencies
       - name: Install Functions Dependencies
         run: npm ci
         working-directory: ./functions
 
-      # 9. Deploy to Firebase Hosting and Functions
       - name: Deploy to Firebase
         run: firebase deploy --only hosting,functions --project ${{ secrets.FIREBASE_PROJECT_ID }} --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }} --debug --non-interactive
         env:
