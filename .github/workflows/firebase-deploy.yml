@@ -29,17 +29,31 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      # 5. Build the Vue app
+      # 5. Verify Firebase CLI
+      - name: Check Firebase CLI Version
+        run: firebase --version
+
+      # 6. Debug Environment
+      - name: Debug Environment
+        run: |
+          echo "Project ID: ${{ secrets.FIREBASE_PROJECT_ID }}"
+          echo "Token set: ${{ secrets.FIREBASE_DEPLOY_TOKEN != '' }}"
+          ls -la
+          if [ -f "firebase.json" ]; then echo "firebase.json exists"; else echo "firebase.json missing"; exit 1; fi
+          if [ -d "./functions" ]; then echo "Functions folder found"; else echo "Functions folder not found"; exit 1; fi
+          cat firebase.json
+
+      # 7. Build the Vue app
       - name: Build Vue App
         run: npm run build
 
-      # 6. Install Functions dependencies
+      # 8. Install Functions dependencies
       - name: Install Functions Dependencies
         run: npm ci
         working-directory: ./functions
 
-      # 7. Deploy to Firebase Hosting and Functions
+      # 9. Deploy to Firebase Hosting and Functions
       - name: Deploy to Firebase
-        run: firebase deploy --only hosting,functions --project ${{ secrets.FIREBASE_PROJECT_ID }} --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }} --debug
+        run: firebase deploy --only hosting,functions --project ${{ secrets.FIREBASE_PROJECT_ID }} --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }} --debug --non-interactive
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
