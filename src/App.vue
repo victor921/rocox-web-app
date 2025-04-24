@@ -29,6 +29,7 @@
             <router-link to="/" class="nav-link">Home</router-link>
             <router-link to="/products" class="nav-link">Client Portal</router-link>
             <router-link to="/contact" class="nav-link">Contact</router-link>
+            <router-link to="/privacy" class="nav-link">Privacy Policy</router-link>
           </nav>
 
           <div class="md:hidden">

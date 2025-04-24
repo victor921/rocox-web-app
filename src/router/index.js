@@ -2,11 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import ClientPortalView from '../views/ClientPortalView.vue'; // New name
 import ContactView from '../views/ContactView.vue';
+import PrivacyView from '../views/PrivacyView.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: HomeView },
-  { path: '/products', name: 'ClientPortal', component: ClientPortalView }, // Updated path/name
+  { path: '/products', name: 'Client Portal', component: ClientPortalView }, // Updated path/name
   { path: '/contact', name: 'Contact', component: ContactView },
+  { path: '/privacy', name: 'Privacy Policy', component: PrivacyView },
   // Add other routes like 404
 ];
 

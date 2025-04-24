@@ -27,4 +27,11 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Privacy page -->
+  <url>
+    <loc>https://rocox.co/privacy</loc>
+    <lastmod>2025-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

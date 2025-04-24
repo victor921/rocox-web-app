@@ -38,7 +38,7 @@
             autocomplete="tel"
           />
         </div>
-         <div>
+        <div>
           <label for="company" class="sr-only">Company</label>
           <input type="text" id="company" name="company" v-model="formData.company" :disabled="isSubmitting" placeholder="Company Name (Optional)" class="form-input" autocomplete="organization"/>
         </div>
@@ -61,23 +61,25 @@
           <label for="message" class="sr-only">Your Message</label>
           <textarea id="message" name="message" rows="4" v-model="formData.message" required :disabled="isSubmitting" placeholder="Your Message" class="form-input"></textarea>
         </div>
+        <!-- Privacy Policy Consent (Optional) -->
         <div class="flex items-start gap-x-3">
-           <input type="checkbox" id="consent" name="consent" v-model="formData.consent" required :disabled="isSubmitting" class="h-4 w-4 mt-1 rounded border-gray-600 bg-gray-800 text-teal-500 focus:ring-teal-500 focus:ring-offset-gray-950 cursor-pointer" />
-           <label for="consent" class="text-sm leading-6 text-gray-400 cursor-pointer">
+          <input type="checkbox" id="privacy-consent" name="privacyConsent" v-model="formData.privacyConsent" :disabled="isSubmitting" class="h-4 w-4 mt-1 rounded border-gray-600 bg-gray-800 text-teal-500 focus:ring-teal-500 focus:ring-offset-gray-950 cursor-pointer" />
+          <label for="privacy-consent" class="text-sm leading-6 text-gray-400 cursor-pointer">
             I agree to the RocoX
-            <span class="relative group inline-block">
-              <span class="font-semibold text-teal-400 hover:text-teal-300 cursor-pointer">Privacy Policy</span>
-              <div class="absolute left-0 bottom-full mb-2 w-64 p-3 text-xs text-gray-200 bg-gray-800 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
-                <strong>RocoX Inc. Privacy Policy</strong><br>
-                We collect your name, email, phone, company, message, and consent solely to respond to your inquiry. Your data is stored securely and never shared. Request deletion anytime.
-              </div>
-            </span>.
+            <router-link to="/privacy" class="font-semibold text-teal-400 hover:text-teal-300">Privacy Policy</router-link>.
+          </label>
+        </div>
+        <!-- SMS Consent (Conditional, Unchecked by Default) -->
+        <div v-if="formData.contactMethod === 'text'" class="flex items-start gap-x-3">
+          <input type="checkbox" id="sms-consent" name="smsConsent" v-model="formData.smsConsent" :disabled="isSubmitting" class="h-4 w-4 mt-1 rounded border-gray-600 bg-gray-800 text-teal-500 focus:ring-teal-500 focus:ring-offset-gray-950 cursor-pointer" />
+          <label for="sms-consent" class="text-sm leading-6 text-gray-400 cursor-pointer">
+            I consent to receive text messages from RocoX Inc. for transactional and promotional purposes at the provided phone number. I understand I can opt-out anytime by replying STOP.
           </label>
         </div>
         <div>
           <button
             type="submit"
-            :disabled="isSubmitting || !formData.consent"
+            :disabled="isSubmitting || (formData.contactMethod === 'text' && !formData.smsConsent)"
             class="btn btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed group"
           >
             <span v-if="!isSubmitting" class="flex items-center">
@@ -99,7 +101,6 @@
 
 <script setup>
 import { ref, reactive } from 'vue';
-// Assuming AOS is initialized globally or in App.vue
 
 const formEndpoint = "https://formspree.io/f/xdkgowad"; // Your Formspree endpoint
 
@@ -110,18 +111,24 @@ const formData = reactive({
   contactMethod: '',
   company: '',
   message: '',
-  consent: false,
+  privacyConsent: false,
+  smsConsent: false,
 });
 
 const isSubmitting = ref(false);
-const submitStatus = ref(''); // 'success' or 'error'
+const submitStatus = ref('');
 const submitMessage = ref('');
 
 const handleSubmit = async () => {
-  // Basic check (HTML5 required handles most, but good practice)
-  if (!formData.name || !formData.email || !formData.message || !formData.consent) {
+  if (!formData.name || !formData.email || !formData.message) {
     submitStatus.value = 'error';
-    submitMessage.value = 'Please fill out all required fields and agree to the policy.';
+    submitMessage.value = 'Please fill out all required fields.';
+    return;
+  }
+
+  if (formData.contactMethod === 'text' && !formData.smsConsent) {
+    submitStatus.value = 'error';
+    submitMessage.value = 'Please consent to receiving text messages to proceed with this contact method.';
     return;
   }
 
@@ -140,7 +147,8 @@ const handleSubmit = async () => {
         contactMethod: formData.contactMethod,
         company: formData.company,
         message: formData.message,
-        consent: formData.consent,
+        privacyConsent: formData.privacyConsent,
+        smsConsent: formData.smsConsent,
         _subject: `RocoX Contact Form: ${formData.name}`,
       }),
     });
@@ -148,11 +156,11 @@ const handleSubmit = async () => {
     if (response.ok) {
       submitStatus.value = 'success';
       submitMessage.value = 'Message sent! We\'ll be in touch soon.';
-      Object.keys(formData).forEach(key => { formData[key] = (key === 'consent' ? false : ''); });
+      Object.keys(formData).forEach(key => { formData[key] = (key === 'privacyConsent' || key === 'smsConsent' ? false : ''); });
       formData.phone = '';
       formData.contactMethod = '';
     } else {
-      const data = await response.json().catch(() => ({})); // Graceful error handling
+      const data = await response.json().catch(() => ({}));
       throw new Error(data?.errors?.map(e => e.message).join(', ') || `HTTP error ${response.status}`);
     }
   } catch (error) {
@@ -168,7 +176,6 @@ const poppins = ref('Poppins');
 
 <style scoped>
 @import "tailwindcss";
-/* .poppins { font-family: 'Poppins', sans-serif; } */
 
 .form-input {
   @apply block w-full rounded-md border-0 bg-white/5 px-4 py-3 text-white shadow-sm ring-1 ring-inset ring-white/10 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6 transition duration-200;
@@ -177,23 +184,21 @@ const poppins = ref('Poppins');
 .form-input:-webkit-autofill:hover,
 .form-input:-webkit-autofill:focus,
 .form-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px theme('colors.gray.900') inset !important; /* Adjust autofill bg */
+  -webkit-box-shadow: 0 0 0 30px theme('colors.gray.900') inset !important;
   -webkit-text-fill-color: theme('colors.white') !important;
   caret-color: theme('colors.white');
   border-radius: theme('borderRadius.md');
 }
 
 textarea.form-input {
-    min-height: 120px; /* Ensure textarea has good height */
-    resize: vertical; /* Allow vertical resize */
+  min-height: 120px;
+  resize: vertical;
 }
 
-/* Button styles (assuming defined globally or in App.vue) */
 .btn {
-    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold leading-7 shadow-sm transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold leading-7 shadow-sm transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
 }
 .btn-primary {
-    @apply bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 hover:scale-[1.03] focus-visible:outline-teal-500;
+  @apply bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 hover:scale-[1.03] focus-visible:outline-teal-500;
 }
-
 </style>
