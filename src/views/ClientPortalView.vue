@@ -130,7 +130,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.poppins { @apply font-poppins; }
+@import "tailwindcss";
+/* .poppins { @apply font-poppins; } */
 
 /* Ensure view takes up space below header */
 .client-portal-view {

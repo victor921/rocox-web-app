@@ -25,16 +25,15 @@ const firebaseConfig = {
     measurementId: "G-ZHMH585N3J"
   };
 
-const app = createApp(App)
+const vueApp = createApp(App)
 // Initialize Firebase
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+const firebaseApp = initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebaseApp);
 // --- Create Vue App Instance ---
 
 // --- Use Plugins ---
-app.use(createPinia())
-app.use(router)
+vueApp.use(createPinia())
+vueApp.use(router)
 
 // --- Initialize AOS ---
 AOS.init({
@@ -46,4 +45,4 @@ AOS.init({
 })
 
 // --- Mount App ---
-app.mount('#app')
+vueApp.mount('#app')

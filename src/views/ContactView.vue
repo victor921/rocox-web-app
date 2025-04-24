@@ -168,7 +168,7 @@ const poppins = ref('Poppins');
 
 <style scoped>
 @import "tailwindcss";
-.poppins { font-family: 'Poppins', sans-serif; }
+/* .poppins { font-family: 'Poppins', sans-serif; } */
 
 .form-input {
   @apply block w-full rounded-md border-0 bg-white/5 px-4 py-3 text-white shadow-sm ring-1 ring-inset ring-white/10 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500 sm:text-sm sm:leading-6 transition duration-200;

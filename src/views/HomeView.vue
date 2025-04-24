@@ -105,7 +105,8 @@ import { onMounted } from 'vue'
 </script>
 
 <style scoped>
-.poppins { @apply font-poppins; }
+@import "tailwindcss";
+/* .poppins { @apply font-poppins; } */
 
 /* Aurora Background Effect */
 .aurora-overlay {
