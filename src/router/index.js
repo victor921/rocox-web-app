@@ -1,18 +1,26 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import ContactUs from '../views/ContactUs.vue';
-import Product from '../views/Product.vue';
-
+import ClientPortalView from '../views/ClientPortalView.vue'; // New name
+import ContactView from '../views/ContactView.vue';
 
 const routes = [
-  { path: '/', name: 'home', component: HomeView },
-  { path: '/contact', name: 'contact', component: ContactUs },
-  { path: '/products', name: 'products', component: Product },
+  { path: '/', name: 'Home', component: HomeView },
+  { path: '/products', name: 'ClientPortal', component: ClientPortalView }, // Updated path/name
+  { path: '/contact', name: 'Contact', component: ContactView },
+  // Add other routes like 404
 ];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+  // Optional: Scroll behavior
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 }; // Scroll to top on new page load
+    }
+  },
 });
 
 export default router;

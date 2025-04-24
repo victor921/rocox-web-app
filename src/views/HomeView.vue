@@ -1,293 +1,154 @@
 <template>
-  <div class="home-container bg-white min-h-screen">
-    <!-- Hero Section -->
-    <div class="hero relative bg-gray-50 py-16 px-4 sm:px-6 md:px-12 lg:py-20 overflow-hidden">
-      <div class="absolute inset-0 opacity-5">
-        <svg class="w-full h-full" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 300C200 350 400 250 720 300C1040 350 1240 250 1440 300" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="10 10"/>
-        </svg>
+  <div class="home-view overflow-x-hidden">
+    <section class="relative isolate min-h-screen flex items-center justify-center text-center px-6 py-24 sm:py-32 lg:px-8 overflow-hidden bg-gray-950">
+      <div class="absolute inset-0 -z-10 overflow-hidden">
+        <div class="aurora-overlay"></div>
       </div>
-      <div class="relative max-w-5xl mx-auto text-center animate-fade-in">
-        <img class="logo mx-auto w-16 sm:w-20 animate-pulse" src="@/assets/ROCO-7.png" alt="Company Logo" />
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4">
-          Automate with <span class="text-gray-600">RocoX</span>
+
+      <div class="relative z-10 max-w-3xl mx-auto" data-aos="fade-up">
+        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl font-poppins leading-tight">
+          Transform Your Business with RocoX AI Automation
         </h1>
-        <p class="text-base sm:text-lg text-gray-600 mt-4 max-w-xl mx-auto">
-          Modern <strong>automation</strong> and <strong>AI-driven software</strong> to streamline your operations.
+        <p class="mt-6 text-lg leading-8 text-gray-300 max-w-xl mx-auto">
+          RocoX provides cutting-edge AI and automation software to streamline your complex workflows, boost efficiency, and drive growth.
         </p>
-        <div class="cta-buttons mt-6 flex flex-col sm:flex-row justify-center gap-4">
-          <router-link to="/products" class="btn primary bg-gray-600 text-white px-6 py-3 rounded-md font-semibold hover:scale-105 transition-transform duration-300">
-            Discover Solutions
-          </router-link>
-          <router-link to="/contact" class="btn secondary bg-transparent border-2 border-gray-600 text-gray-600 px-6 py-3 rounded-md font-semibold hover:scale-105 transition-transform duration-300">
-            Contact Us
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+          <router-link to="/products" class="btn btn-primary">Explore Platform</router-link>
+          <router-link to="/contact" class="btn btn-secondary group">
+            Get In Touch <span class="ml-1 transition-transform duration-200 group-hover:translate-x-1">→</span>
           </router-link>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- About Section -->
-    <div class="about-section py-12 px-4 sm:px-6 md:px-12 bg-white">
-      <div class="max-w-4xl mx-auto text-center animate-fade-in">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">RocoX: Simplifying Operations</h2>
-        <p class="text-base sm:text-lg text-gray-600 mt-4 max-w-2xl mx-auto">
-          We deliver <strong>automation</strong> and <strong>AI-powered software</strong> to save time and enhance efficiency across your locations.
+    <section class="py-20 sm:py-28 bg-gray-900 px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div data-aos="fade-right">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl font-poppins">Overcome Operational Bottlenecks</h2>
+          <p class="mt-6 text-lg leading-7 text-gray-400">
+            Manual data handling, disconnected systems, and repetitive tasks drain resources and hinder scalability. RocoX targets these pain points directly.
+          </p>
+          <ul class="mt-6 space-y-3 text-gray-300">
+            <li class="flex items-start">
+              <svg class="flex-shrink-0 w-5 h-5 text-teal-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+              Eliminate manual data entry errors and delays.
+            </li>
+            <li class="flex items-start">
+              <svg class="flex-shrink-0 w-5 h-5 text-teal-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+              Consolidate data from disparate sources seamlessly.
+            </li>
+            <li class="flex items-start">
+              <svg class="flex-shrink-0 w-5 h-5 text-teal-400 mt-1 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+              Gain real-time visibility and actionable insights.
+            </li>
+          </ul>
+        </div>
+        <div class="relative h-64 md:h-80 rounded-xl overflow-hidden shadow-2xl" data-aos="fade-left">
+          <div class="absolute inset-0 bg-gradient-to-br from-teal-500/20 to-blue-600/20 flex items-center justify-center">
+            <svg class="w-24 h-24 text-gray-600 opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+          </div>
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1484&q=80" alt="Abstract team collaboration" class="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity"/>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 sm:py-28 bg-gray-950 px-6 lg:px-8 relative overflow-hidden">
+      <div class="absolute inset-0 -z-10 h-full w-full bg-gray-950 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] opacity-30"></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl font-poppins mb-4" data-aos="fade-up">Why Choose RocoX?</h2>
+        <p class="text-lg leading-7 text-gray-400 mb-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+          Our platform combines powerful automation with intelligent insights tailored for your success.
         </p>
-      </div>
-    </div>
-
-    <!-- Key Features -->
-    <div class="features py-12 px-4 sm:px-6 md:px-12 bg-gray-50">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-8 animate-fade-in">Our Expertise</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <div class="feature-card bg-white p-6 rounded-lg border border-gray-200 hover:shadow-md hover:scale-105 transition-all duration-300 animate-fade-in">
-            <svg class="w-8 h-8 text-gray-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-            <h3 class="text-lg font-bold text-gray-900">Automation</h3>
-            <p class="text-gray-600 mt-2">Consolidate files and workflows effortlessly.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon-wrapper bg-teal-500/10 text-teal-400">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <h3 class="mt-6 text-xl font-semibold text-white font-poppins">Boost Efficiency</h3>
+            <p class="mt-2 text-gray-400">Automate hours of manual work, freeing up your team for high-value tasks.</p>
           </div>
-          <div class="feature-card bg-white p-6 rounded-lg border border-gray-200 hover:shadow-md hover:scale-105 transition-all duration-300 animate-fade-in">
-            <svg class="w-8 h-8 text-gray-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-            <h3 class="text-lg font-bold text-gray-900">Custom Software</h3>
-            <p class="text-gray-600 mt-2">Tailored solutions for your business needs.</p>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-wrapper bg-blue-500/10 text-blue-400">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" /></svg>
+            </div>
+            <h3 class="mt-6 text-xl font-semibold text-white font-poppins">AI-Driven Insights</h3>
+            <p class="mt-2 text-gray-400">Leverage intelligent analytics for smarter decisions and performance tracking.</p>
           </div>
-          <div class="feature-card bg-white p-6 rounded-lg border border-gray-200 hover:shadow-md hover:scale-105 transition-all duration-300 animate-fade-in">
-            <svg class="w-8 h-8 text-gray-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-            <h3 class="text-lg font-bold text-gray-900">AI Insights</h3>
-            <p class="text-gray-600 mt-2">Data-driven decisions with AI analytics.</p>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon-wrapper bg-purple-500/10 text-purple-400">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+            </div>
+            <h3 class="mt-6 text-xl font-semibold text-white font-poppins">Secure & Reliable</h3>
+            <p class="mt-2 text-gray-400">Built with enterprise-grade security and robust data pipelines you can trust.</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Insights Section with Charts -->
-    <div class="insights-section py-12 px-4 sm:px-6 md:px-12 bg-white">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center animate-fade-in">Automation Results</h2>
-        <p class="text-base sm:text-lg text-gray-600 mt-4 text-center max-w-2xl mx-auto">
-          Track the impact of our file consolidation automation across your locations.
+    <section class="py-20 sm:py-28 bg-gray-900 px-6 lg:px-8 text-center">
+      <div class="max-w-4xl mx-auto" data-aos="zoom-in">
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl font-poppins">Ready to Transform Your Operations?</h2>
+        <p class="mt-6 text-lg leading-7 text-gray-400">
+          Let's discuss how RocoX can tailor an automation strategy for your specific needs.
         </p>
-        <div v-if="chartsFailed" class="text-center text-gray-600 mt-8">
-          <svg class="mx-auto w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-          </svg>
-          <p class="mt-2">Unable to load charts. Please try refreshing the page.</p>
-        </div>
-        <div v-else class="charts grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          <div class="chart-container bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">Time Saved per Location</h3>
-            <canvas id="timeSavedChart"></canvas>
-          </div>
-          <div class="chart-container bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">Files Consolidated per Location</h3>
-            <canvas id="filesConsolidatedChart"></canvas>
-          </div>
+        <div class="mt-10">
+          <router-link to="/contact" class="btn btn-primary btn-lg">Request a Consultation</router-link>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
-<script>
-export default {
-  name: "HomeView",
-  data() {
-    return {
-      chartsFailed: false,
-    };
-  },
-  mounted() {
-    // Function to initialize charts
-    const initCharts = () => {
-      if (typeof Chart === 'undefined') {
-        console.error('Chart.js is not loaded. Ensure the CDN script is included in index.html.');
-        this.chartsFailed = true;
-        return false;
-      }
-
-      // Time Saved Bar Chart
-      const timeSavedCtx = document.getElementById('timeSavedChart')?.getContext('2d');
-      if (timeSavedCtx) {
-        new Chart(timeSavedCtx, {
-          type: 'bar',
-          data: {
-            labels: ['Caley Main', 'Caley Orlando', 'Miami Central'],
-            datasets: [{
-              label: 'Hours Saved',
-              data: [120, 95, 80],
-              backgroundColor: 'rgba(75, 85, 99, 0.5)',
-              borderColor: 'rgba(75, 85, 99, 1)',
-              borderWidth: 1
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Hours Saved',
-                  font: { size: 12 }
-                },
-                ticks: { font: { size: 10 } }
-              },
-              x: { ticks: { font: { size: 10 } } }
-            },
-            plugins: {
-              legend: { display: false }
-            }
-          }
-        });
-      } else {
-        console.error('Time Saved Chart canvas not found.');
-        this.chartsFailed = true;
-        return false;
-      }
-
-      // Files Consolidated Line Chart
-      const filesConsolidatedCtx = document.getElementById('filesConsolidatedChart')?.getContext('2d');
-      if (filesConsolidatedCtx) {
-        new Chart(filesConsolidatedCtx, {
-          type: 'line',
-          data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr'],
-            datasets: [
-              {
-                label: 'Caley Main',
-                data: [500, 600, 550, 620],
-                borderColor: 'rgba(75, 85, 99, 1)',
-                backgroundColor: 'rgba(75, 85, 99, 0.2)',
-                fill: false,
-                tension: 0.3
-              },
-              {
-                label: 'Caley Orlando',
-                data: [400, 450, 430, 480],
-                borderColor: 'rgba(156, 163, 175, 1)',
-                backgroundColor: 'rgba(156, 163, 175, 0.2)',
-                fill: false,
-                tension: 0.3
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              y: {
-                beginAtZero: true,
-                title: {
-                  display: true,
-                  text: 'Files Consolidated',
-                  font: { size: 12 }
-                },
-                ticks: { font: { size: 10 } }
-              },
-              x: { ticks: { font: { size: 10 } } }
-            },
-            plugins: {
-              legend: {
-                position: 'top',
-                labels: { font: { size: 10 } }
-              }
-            }
-          }
-        });
-      } else {
-        console.error('Files Consolidated Chart canvas not found.');
-        this.chartsFailed = true;
-        return false;
-      }
-      return true;
-    };
-
-    // Retry chart initialization
-    let attempts = 0;
-    const maxAttempts = 5;
-    const retryInterval = 500;
-
-    const tryInitCharts = () => {
-      if (initCharts()) {
-        console.log('Charts initialized successfully.');
-        this.chartsFailed = false;
-      } else if (attempts < maxAttempts) {
-        attempts++;
-        console.warn(`Chart initialization attempt ${attempts} failed. Retrying in ${retryInterval}ms...`);
-        setTimeout(tryInitCharts, retryInterval);
-      } else {
-        console.error('Failed to initialize charts after maximum attempts.');
-        this.chartsFailed = true;
-      }
-    };
-
-    // Initial attempt after DOM is ready
-    this.$nextTick(() => setTimeout(tryInitCharts, 200));
-  }
-};
+<script setup>
+import { onMounted } from 'vue'
 </script>
 
 <style scoped>
-/* Import Tailwind CSS and Google Fonts */
-@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap';
-@import 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
+.poppins { @apply font-poppins; }
 
-/* Custom Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Aurora Background Effect */
+.aurora-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(20, 184, 166, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+  filter: blur(60px);
+  opacity: 0.7;
+  animation: aurora-float 15s ease-in-out infinite alternate;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
+@keyframes aurora-float {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(5px, -10px) scale(1.05); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out;
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold leading-7 shadow-sm transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+}
+.btn-lg { @apply px-8 py-4; }
+
+.btn-primary {
+  @apply bg-gradient-to-r from-teal-500 to-blue-600 text-white hover:from-teal-600 hover:to-blue-700 hover:scale-[1.03] focus-visible:outline-teal-500;
+}
+.btn-secondary {
+  @apply text-teal-300 ring-1 ring-inset ring-teal-400/50 hover:ring-teal-300 hover:bg-teal-400/10 focus-visible:outline-teal-400;
 }
 
-.animate-pulse {
-  animation: pulse 2.5s ease-in-out infinite;
+/* Feature Card Styling */
+.feature-card {
+  @apply bg-gray-900/50 border border-gray-800/70 rounded-xl p-8 text-center transition-all duration-300 hover:bg-gray-800/80 hover:border-teal-500/50 hover:scale-[1.02];
 }
-
-/* Custom Styles */
-.home-container {
-  font-family: 'Inter', sans-serif;
-}
-
-/* Hero Section */
-.hero {
-  min-height: 400px;
-}
-
-/* Chart Containers */
-.chart-container {
-  height: 250px;
+.icon-wrapper {
+  @apply w-16 h-16 rounded-full inline-flex items-center justify-center mx-auto;
+  svg { @apply w-8 h-8; }
 }
 
 /* Responsive Adjustments */
-@media (max-width: 640px) {
-  .cta-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  .btn {
-    width: 100%;
-    max-width: 280px;
-  }
-  .charts {
-    grid-template-columns: 1fr;
-  }
-  .chart-container {
-    height: 200px;
-  }
+@media (max-width: 768px) {
+  .home-view h1 { @apply text-4xl sm:text-5xl; }
+  .home-view h2 { @apply text-2xl sm:text-3xl; }
+  .btn-lg { @apply px-6 py-3 text-sm; }
 }
 </style>

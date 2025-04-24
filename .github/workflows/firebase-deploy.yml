@@ -1,4 +1,4 @@
-name: Deploy Vue App to Firebase
+name: Deploy Vue App to Firebase Hosting
 
 on:
   push:
@@ -37,23 +37,13 @@ jobs:
           ls -la
           [ -f "firebase.json" ] && echo "firebase.json exists" || { echo "firebase.json missing"; exit 1; }
           [ -f "package-lock.json" ] && echo "package-lock.json exists" || { echo "package-lock.json missing"; exit 1; }
-          [ -d "./functions" ] && echo "Functions folder found" || { echo "Functions folder not found"; exit 1; }
-          [ -f "./functions/index.js" ] && echo "functions/index.js exists" || { echo "functions/index.js missing"; exit 1; }
-          [ -f "./functions/package-lock.json" ] && echo "functions/package-lock.json exists" || { echo "functions/package-lock.json missing"; exit 1; }
           cat firebase.json
           cat package.json
-          cat functions/package.json
 
       - name: Build Vue App
         run: npm run build
 
-      - name: Install Functions Dependencies
-        run: |
-          [ -f package-lock.json ] && npm ci || npm install
-          echo "Functions dependencies installed"
-        working-directory: ./functions
-
-      - name: Deploy to Firebase
-        run: firebase deploy --only hosting,functions --project ${{ secrets.FIREBASE_PROJECT_ID }} --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }} --debug --non-interactive
+      - name: Deploy to Firebase Hosting
+        run: firebase deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }} --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }} --debug --non-interactive
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
