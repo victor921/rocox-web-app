@@ -1,4 +1,4 @@
-name: Deploy Vue App to Firebase Hosting
+name: Deploy Vue App to Firebase
 
 on:
   push:
@@ -10,40 +10,49 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout the repo
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      # 2. Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: npm
+          cache: 'npm'
 
+      # 3. Install dependencies
       - name: Install Dependencies
-        run: |
-          [ -f package-lock.json ] && npm ci || npm install
-          echo "Root dependencies installed"
+        run: npm ci
 
+      # 4. Install Firebase CLI globally
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
+      # 5. Verify Firebase CLI
       - name: Check Firebase CLI Version
         run: firebase --version
 
+      # 6. Debug Environment
       - name: Debug Environment
         run: |
           echo "Project ID: ${{ secrets.FIREBASE_PROJECT_ID }}"
           echo "Token set: ${{ secrets.FIREBASE_DEPLOY_TOKEN != '' }}"
           ls -la
-          [ -f "firebase.json" ] && echo "firebase.json exists" || { echo "firebase.json missing"; exit 1; }
-          [ -f "package-lock.json" ] && echo "package-lock.json exists" || { echo "package-lock.json missing"; exit 1; }
+          if [ -f "firebase.json" ]; then echo "firebase.json exists"; else echo "firebase.json missing"; exit 1; fi
+          if [ -d "./functions" ]; then echo "Functions folder found"; else echo "Functions folder not found"; exit 1; fi
           cat firebase.json
-          cat package.json
-
+      # 7. Build the Vue app
       - name: Build Vue App
         run: npm run build
 
-      - name: Deploy to Firebase Hosting
-        run: firebase deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }} --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }} --debug --non-interactive
+      # 8. Install Functions dependencies
+      - name: Install Functions Dependencies
+        run: npm ci
+        working-directory: ./functions
+
+      # 9. Deploy to Firebase Hosting and Functions
+      - name: Deploy to Firebase
+        run: firebase deploy --only hosting,functions --project ${{ secrets.FIREBASE_PROJECT_ID }} --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }} --debug --non-interactive
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
