@@ -15,7 +15,7 @@
       <section>
         <h3>1. Introduction</h3>
         <p>
-          Welcome to RocoX Inc. (“RocoX,” “we,” “us,” or “our”). This Privacy Policy governs the collection, use, storage, and disclosure of personal information we collect through our website (<router-link to="/">www.rocox.com</router-link>), contact forms, and related services. By using our services, you agree to the terms of this Privacy Policy.
+          Welcome to RocoX Inc. (“RocoX,” “we,” “us,” or “our”). This Privacy Policy governs the collection, use, storage, and disclosure of personal information we collect through our website (<router-link to="/">www.rocox.co</router-link>), contact forms, and related services. By using our services, you agree to the terms of this Privacy Policy.
         </p>
         <p>
           We are committed to complying with applicable privacy laws, including the Telephone Consumer Protection Act (TCPA), General Data Protection Regulation (GDPR), California Consumer Privacy Act (CCPA), and other relevant regulations.
@@ -94,7 +94,7 @@
           <li><strong>Non-Discrimination</strong>: We will not discriminate against you for exercising your rights (CCPA).</li>
         </ul>
         <p>
-          To exercise these rights, contact us at <a href="mailto:privacy@rocox.com">privacy@rocox.com</a>. We will respond within 30 days (or as required by law).
+          To exercise these rights, contact us at <a href="mailto:privacy@rocox.co">privacy@rocox.co</a>. We will respond within 30 days (or as required by law).
         </p>
       </section>
 
@@ -139,7 +139,7 @@
           If you have questions about this Privacy Policy or our data practices, please contact us:
         </p>
         <ul>
-          <li><strong>Email</strong>: <a href="mailto:privacy@rocox.com">privacy@rocox.com</a></li>
+          <li><strong>Email</strong>: <a href="mailto:privacy@rocox.co">privacy@rocox.co</a></li>
         </ul>
       </section>
 
