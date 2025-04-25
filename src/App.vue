@@ -53,6 +53,7 @@
             <router-link to="/" @click="closeMenu" class="mobile-nav-link">Home</router-link>
             <router-link to="/products" @click="closeMenu" class="mobile-nav-link">Client Portal</router-link>
             <router-link to="/contact" @click="closeMenu" class="mobile-nav-link">Contact</router-link>
+            <router-link to="/privacy" @click="closeMenu" class="mobile-nav-link">Privacy Policy</router-link>
           </nav>
         </div>
       </Transition>
