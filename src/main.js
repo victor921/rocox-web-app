@@ -16,7 +16,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 console.log(import.meta.env)
-// Firebase configuration using environment variables
+// Firebase configuration using environment variables/
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || import.meta.env.VUE_APP_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || import.meta.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
