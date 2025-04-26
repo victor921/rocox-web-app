@@ -14,22 +14,30 @@ import 'aos/dist/aos.css'
 // --- Firebase ---
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// Replace with your actual Firebase config from Firebase Console
-const firebaseConfig = {
-    apiKey: "AIzaSyA1A4Qv-LRp7ytDv-At6lFtWNeGx_apH9c",
-    authDomain: "rocox-136c9.firebaseapp.com",
-    projectId: "rocox-136c9",
-    storageBucket: "rocox-136c9.firebasestorage.app",
-    messagingSenderId: "39493534751",
-    appId: "1:39493534751:web:542c196511d920516a812a",
-    measurementId: "G-ZHMH585N3J"
-  };
 
+// Firebase configuration using environment variables
+const firebaseConfig = {
+    apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+    authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.VUE_APP_FIREBASE_APP_ID,
+    measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
+};
+
+// Validate Firebase config
+if (!firebaseConfig.apiKey || !firebaseConfig.projectId || !firebaseConfig.appId) {
+    console.error('Firebase configuration is incomplete. Please check your environment variables.');
+    throw new Error('Missing Firebase configuration');
+}
+
+// --- Create Vue App Instance ---
 const vueApp = createApp(App)
+
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebaseApp);
-// --- Create Vue App Instance ---
 
 // --- Use Plugins ---
 vueApp.use(createPinia())
@@ -37,11 +45,11 @@ vueApp.use(router)
 
 // --- Initialize AOS ---
 AOS.init({
-  duration: 800,
-  once: true,
-  offset: 50,
-  delay: 100,
-  disable: 'false'
+    duration: 800,
+    once: true,
+    offset: 50,
+    delay: 100,
+    disable: 'false'
 })
 
 // --- Mount App ---
