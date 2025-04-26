@@ -1,9 +1,9 @@
-name: Deploy Vite App to Firebase
+name: Deploy Vue App to Firebase
 
 on:
   push:
     branches:
-      - main   # or your deploy branch
+      - master
 
 jobs:
   build-and-deploy:
@@ -25,7 +25,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      # 4. Install Firebase CLI
+      # 4. Install Firebase CLI globally
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
@@ -33,17 +33,21 @@ jobs:
       - name: Check Firebase CLI Version
         run: firebase --version
 
-      # 6. Debug environment
-      - name: Debug Env Vars
+      # 6. Debug Environment
+      - name: Debug Environment
         run: |
           echo "Project ID: ${{ secrets.FIREBASE_PROJECT_ID }}"
-          echo "Deploy Token: ${{ secrets.FIREBASE_DEPLOY_TOKEN != '' }}"
-          echo "VITE_FIREBASE_API_KEY:    ${{ secrets.VITE_FIREBASE_API_KEY != '' }}"
+          echo "Token set: ${{ secrets.FIREBASE_DEPLOY_TOKEN != '' }}"
+          echo "Firebase API Key set: ${{ secrets.VITE_FIREBASE_API_KEY != '' }}"
+          echo "Firebase Measurement ID set: ${{ secrets.VITE_FIREBASE_MEASUREMENT_ID != '' }}"
+          ls -la
+          if [ -f "firebase.json" ]; then echo "firebase.json exists"; else echo "firebase.json missing"; exit 1; fi
+          cat firebase.json
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
 
-      # 7. Build the Vite app
-      - name: Build Vite App
+      # 7. Build the Vue app
+      - name: Build Vue App
         env:
           VITE_FIREBASE_API_KEY:        ${{ secrets.VITE_FIREBASE_API_KEY }}
           VITE_FIREBASE_AUTH_DOMAIN:    ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
@@ -56,6 +60,6 @@ jobs:
 
       # 8. Deploy to Firebase Hosting
       - name: Deploy to Firebase
-        run: firebase deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }} --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }} --non-interactive
+        run: firebase deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }} --token ${{ secrets.FIREBASE_DEPLOY_TOKEN }} --debug --non-interactive
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_DEPLOY_TOKEN }}
